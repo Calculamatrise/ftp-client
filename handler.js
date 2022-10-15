@@ -1,7 +1,12 @@
-import { client } from "./client.js";
 import { router } from "./server.js";
 
 export default async function(req, res) {
+    let params = null;
+    req.url = req.url.replace(/\?.*/, match => {
+        params = new URLSearchParams(match);
+        return '';
+    });
+
     console.log(req.method, req.url);
 
     const buffers = [];
@@ -15,10 +20,10 @@ export default async function(req, res) {
             req.body = JSON.parse(req.body);
         } catch(err) {
             res.writeHead(500, {'Content-Type': 'application/json'});
-            res.write({
+            res.write(JSON.stringify({
                 error: err.message || err,
                 res: false
-            });
+            }));
             return;
         }
     }

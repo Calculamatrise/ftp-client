@@ -27,7 +27,7 @@ router.post('/connect', function(req, res) {
     client.once('error', error);
     client.connect({
         host: req.body.host || 'localhost',
-        port: req.body.port ?? 21,
+        port: ~~req.body.port || 21,
         user: req.body.user || 'anonymous',
         password: req.body.password || 'anonymous@'
     });
@@ -44,12 +44,6 @@ router.post('/connect', function(req, res) {
             }));
             res.end();
         });
-
-        // res.writeHead(200, {'Content-Type': 'application/json'});
-        // res.write(JSON.stringify({
-        //     result: 'success'
-        // }));
-        // res.end();
     }
 
     function error(err) {

@@ -1,0 +1,39 @@
+body nav {
+    display: flex;
+    justify-content: space-between;
+    margin: -8px;
+    margin-bottom: 0;
+}
+
+body nav section.left a {
+    text-decoration: none;
+}
+
+body nav section.left ::before {
+    content: "/ ";
+}
+
+.connect-dialog {
+    background-color: white;
+    height: fit-content;
+    margin: auto;
+    padding: 1rem;
+    position: absolute;
+    width: fit-content;
+    z-index: 1;
+}
+
+.connect-dialog::before {
+    background-color: rgba(0, 0, 0, 0.8);
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.error {
+    color: #ff4848
+}

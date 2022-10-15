@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="include_once.js?src=/head.html"></script>
 </head>
 <body>
-    Hello World!
+    <script src="include_once.js?src=/header.html"></script>
+    <main>
+        Hello World!
+    </main>
     <script>
         const socketWorker = new SharedWorker('/socket-worker.js');
         socketWorker.port.addEventListener('message', function(event) {
             console.log(event);
         });
-
         socketWorker.port.start();
 
-        // window.addEventListener('beforeunload', () => {
-        //     socketWorker.port.postMessage({ 
-        //         action: 'unload',
-        //         value: null
-        //     });
+        window.addEventListener('beforeunload', () => {
+            socketWorker.port.postMessage({ 
+                action: 'unload',
+                value: null
+            });
 
-        //     socketWorker.port.close();
-        // });
+            socketWorker.port.close();
+        });
     </script>
 </body>
 </html>
