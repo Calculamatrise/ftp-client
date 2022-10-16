@@ -13,6 +13,10 @@ body nav section.left ::before {
     content: "/ ";
 }
 
+nav-link:hover {
+    cursor: pointer;
+}
+
 .connect-dialog {
     background-color: white;
     height: fit-content;

@@ -6,7 +6,7 @@ import sendFile from "./sendFile.js";
 export default class Router extends EventEmitter {
     #routes = new Map();
     _route(req, res) {
-        const route = this.#routes.get(req.method);
+        const route = this.#routes.get(req.method) || new Map();
         const callback = route.get(req.url);
         if (typeof callback == 'function') {
             callback(...arguments);

@@ -18,10 +18,6 @@ wss.on('connection', function(ws) {
 
 export const router = new Router();
 
-router.get('/', function(req, res) {
-    sendFile.call(res, './public/index.html');
-});
-
 router.post('/connect', function(req, res) {
     client.once('ready', ready);
     client.once('error', error);
